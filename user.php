@@ -40,8 +40,8 @@
             //var_dump($login);
             if (count($login) > 0) {
                 $_SESSION["user"] = [
-                                        $login[0]["id"], $login[0]["login"], $login[0]["password"], $login[0]["email"], $login[0]["firstname"], $login[0]["lastname"]
-                                    ];
+                    $login[0]["id"], $login[0]["login"], $login[0]["password"], $login[0]["email"], $login[0]["firstname"], $login[0]["lastname"]
+                ];
                 header("Refresh: 0");
             }   
         }
@@ -66,6 +66,7 @@
             $this->user = $user;
             $requeteU = mysqli_query($this->bdd, "UPDATE utilisateurs set login = '$login', password = '$password', email = '$email', firstname = '$firstname', lastname = '$lastname' where id = '$this->user'");
             var_dump($requeteU);
+            $_SESSION["user"] = [$user, $login, $email, $firstname, $lastname];
             header("Refresh: 0");
         }
 
