@@ -70,6 +70,54 @@
             header("Refresh: 0");
         }
 
+        public function isConnected() {
+            if (isset($_SESSION["user"])) {
+                return true;
+            }
+            else 
+                return false;
+        }
+
+        public function getAllinfos() {?>
+           
+            <table>
+                <thead>
+                    <th>login</th>
+                    <th>password</th>
+                    <th>email</th>
+                    <th>Firstname</th>
+                    <th>lastname</th>
+                </thead>
+                <tbody>
+                    <td>
+                        <?php
+                            echo $_SESSION["user"][1];
+                        ?>
+                    </td>
+                    <td>
+                        <?php 
+                            echo $_SESSION["user"][2];
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            echo $_SESSION["user"][3];
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            echo $_SESSION["user"][4];
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            echo $_SESSION["user"][5];
+                        ?>
+                    </td>
+                </tbody>
+            </table><?php
+        }
+
         public function getLogin() {
             $user = $_SESSION["user"][1];
             $this->user = $user;
@@ -90,12 +138,6 @@
 
         public function getLastname() {
             $user = $_SESSION["user"][5];
-            $this->user = $user;
-            return $this->user;
-        }
-
-        public function getAllInfos() {
-            $user = $_SESSION["user"];
             $this->user = $user;
             return $this->user;
         }
@@ -142,7 +184,8 @@
     print($user->getEmail());
     print($user->getFirstname());
     print($user->getLastname());
-    var_dump($user->getAllInfos());
+    print($user->getAllInfos());
+    print($user->isConnected());
 ?>
 
 <!DOCTYPE html>
