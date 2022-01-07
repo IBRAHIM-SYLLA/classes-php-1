@@ -37,7 +37,7 @@
         public function connect($login, $password) {
             $requete = mysqli_query($this->bdd, "SELECT * from utilisateurs where login = '$login'");
             $login = mysqli_fetch_all($requete, MYSQLI_ASSOC);
-            //var_dump($login);
+            var_dump($login);
             if (count($login) > 0) {
                 $_SESSION["user"] = [
                     $login[0]["id"], $login[0]["login"], $login[0]["password"], $login[0]["email"], $login[0]["firstname"], $login[0]["lastname"]
@@ -66,7 +66,7 @@
             $this->user = $user;
             $requeteU = mysqli_query($this->bdd, "UPDATE utilisateurs set login = '$login', password = '$password', email = '$email', firstname = '$firstname', lastname = '$lastname' where id = '$this->user'");
             var_dump($requeteU);
-            $_SESSION["user"] = [$user, $login, $email, $firstname, $lastname];
+            $_SESSION["user"] = [$user, $password, $login, $email, $firstname, $lastname];
             header("Refresh: 0");
         }
 
@@ -109,6 +109,11 @@
                             echo $_SESSION["user"][4];
                         ?>
                     </td>
+                    <td>
+                        <?php
+                            echo $_SESSION["user"][5];
+                        ?>
+                    </td>
                 </tbody>
             </table><?php
         }
@@ -132,7 +137,7 @@
         }
 
         public function getLastname() {
-            $user = $_SESSION["user"][4];
+            $user = $_SESSION["user"][5];
             $this->user = $user;
             return $this->user;
         }
@@ -222,9 +227,10 @@
         <h1>Update</h1>
         <form action="" method="post">
             <input type="text" name="loginU" value=<?php echo $_SESSION["user"][1]; ?>>
-            <input type="text" name="emailU" value=<?php echo $_SESSION["user"][2]; ?>>
-            <input type="text" name="firstnameU" value=<?php echo $_SESSION["user"][3]; ?>>
-            <input type="text" name="lastnameU" value=<?php echo $_SESSION["user"][4]; ?>>
+            <input type="text" name="passwordU" value=<?php echo $_SESSION["user"][2]; ?>>
+            <input type="text" name="emailU" value=<?php echo $_SESSION["user"][3]; ?>>
+            <input type="text" name="firstnameU" value=<?php echo $_SESSION["user"][4]; ?>>
+            <input type="text" name="lastnameU" value=<?php echo $_SESSION["user"][5]; ?>>
             <input type="submit" name="updateU" value="update">
         </form>
     </main>
