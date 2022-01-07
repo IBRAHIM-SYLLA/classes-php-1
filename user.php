@@ -109,11 +109,6 @@
                             echo $_SESSION["user"][4];
                         ?>
                     </td>
-                    <td>
-                        <?php
-                            echo $_SESSION["user"][5];
-                        ?>
-                    </td>
                 </tbody>
             </table><?php
         }
@@ -137,7 +132,7 @@
         }
 
         public function getLastname() {
-            $user = $_SESSION["user"][5];
+            $user = $_SESSION["user"][4];
             $this->user = $user;
             return $this->user;
         }
@@ -227,10 +222,9 @@
         <h1>Update</h1>
         <form action="" method="post">
             <input type="text" name="loginU" value=<?php echo $_SESSION["user"][1]; ?>>
-            <input type="text" name="passwordU" value=<?php echo $_SESSION["user"][2]; ?>>
-            <input type="text" name="emailU" value=<?php echo $_SESSION["user"][3]; ?>>
-            <input type="text" name="firstnameU" value=<?php echo $_SESSION["user"][4]; ?>>
-            <input type="text" name="lastnameU" value=<?php echo $_SESSION["user"][5]; ?>>
+            <input type="text" name="emailU" value=<?php echo $_SESSION["user"][2]; ?>>
+            <input type="text" name="firstnameU" value=<?php echo $_SESSION["user"][3]; ?>>
+            <input type="text" name="lastnameU" value=<?php echo $_SESSION["user"][4]; ?>>
             <input type="submit" name="updateU" value="update">
         </form>
     </main>
